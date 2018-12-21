@@ -1,0 +1,23 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "UNCC Coding Bootcamp Week 13 Homework",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CACOOK88/friendFinder.git"
+  },
+  "author": "Chad Cook",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CACOOK88/friendFinder/issues"
+  },
+  "homepage": "https://github.com/CACOOK88/friendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
