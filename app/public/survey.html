@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Friend Finder Survey</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <style>select{width: 400px}</style>
 </head>
 <body>
@@ -24,7 +27,7 @@
     <h4>Question 1</h4>
     <h5>You love long walks on the beach at sunrise</h5>
     <select name="q1" id="q1">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (Chicken Legs Here, I Don't Walk)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -35,7 +38,7 @@
     <h4 class="mt-4">Question 2</h4>
     <h5>Bar crawls should be an olympic sport</h5>
     <select name="q2" id="q2">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (Beer is disgusting)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -46,7 +49,7 @@
     <h4 class="mt-4">Question 3</h4>
     <h5>Gaston County is to Charlotte as the Shadowy Place is to The Lion King</h5>
     <select name="q3" id="q3">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (Gas House is my home sweet home)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -57,7 +60,7 @@
     <h4 class="mt-4">Question 4</h4>
     <h5>You're still looking for your partner in crime</h5>
     <select name="q4" id="q4">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (Found em)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -68,7 +71,7 @@
     <h4 class="mt-4">Question 5</h4>
     <h5>Your weekends are spent in sweats eating pizza watching netflix (no chill here)</h5>
     <select name="q5" id="q5">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (Never)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -79,7 +82,7 @@
     <h4 class="mt-4">Question 6</h4>
     <h5>Coffee runs through your veins</h5>
     <select name="q6" id="q6">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (UGH!!!)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -90,7 +93,7 @@
     <h4 class="mt-4">Question 7</h4>
     <h5>Vegan?</h5>
     <select name="q7" id="q7">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (UGH!!!)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -101,7 +104,7 @@
     <h4 class="mt-4">Question 8</h4>
     <h5>What is your level of nerdiness?</h5>
     <select name="q8" id="q8">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (lowest)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -112,7 +115,7 @@
     <h4 class="mt-4">Question 9</h4>
     <h5>Dog lover?</h5>
     <select name="q9" id="q9">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (Please No)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -123,7 +126,7 @@
     <h4 class="mt-4">Question 10</h4>
     <h5>Texts always require an emoji</h5>
     <select name="q10" id="q10">
-      <option value="" selected="selected">Select</option>
+      <option value="0" selected="selected">Select</option>
       <option value="1">1 (Definitely Not)</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -140,14 +143,36 @@
       <a href="/api/friends">Friends List</a>  || 
       <a href="https://cacook88.github.io/friendFinder">Github</a>
     </footer>
+
+    
   </div>
+  <div class="modal fade" id="friendModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Your Best Friend is <span id="friend-name"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img id="friend-image" src="https://www.mountaineers.org/images/placeholder-images/placeholder-400-x-400/image_preview" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script type="text/javascript">
     // NEED TO ADD IN POST REQUEST AND LOGIC
     $('#submit').on('click', function(e) {
       e.preventDefault()
       let newFriend = {
-        name: $('#name'),
-        image: $('#image'),
+        name: $('#name').val(),
+        image: $('#image').val(),
         scores: [
           $('#q1').val(),
           $('#q2').val(),
@@ -163,20 +188,19 @@
       }
       console.log(newFriend)
 
-      $.post('/api/friends', newFriend, function(data) {
-        //data response will have the best match then update the html to display modal
+      $.post('/api/friends', newFriend)
+      .then(function(data) {
+        console.log(data)
+
+        // SET FRIEND NAME AND URL
+        $('#friend-name').text(data.name)
+        $('#friend-image').attr('src', data.image)
+
+
+        $('#friendModal').modal('toggle')
       })
 
     })
-
-
-  
-  
-  
-  
   </script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
+ </body>
 </html>
